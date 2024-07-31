@@ -28,15 +28,13 @@ void setup()
 }
 void loop()
 {
-
-  // put your main code here, to run repeatedly:
   switch (a)
   {
   case 1:
     tft.fillScreen(TFT_BLACK);
     Serial.println("Precalentar");
     tft.drawString("Fecha", 10, 10, 2);
-    tft.drawString("Bateria", 200, 10, 2);
+    tft.drawString("Bateria", 220, 10, 2);
     tft.drawString("Precalentar", 25, 80, 4);
     delay(2000);
     a = 2;
@@ -45,7 +43,7 @@ void loop()
     tft.fillScreen(TFT_BLACK);
     Serial.println("Control del aparato");
     tft.drawString("Fecha", 10, 10, 2);
-    tft.drawString("Bateria", 200, 10, 2);
+    tft.drawString("Bateria", 220, 10, 2);
     tft.drawString("Control del", 20, 80, 4);
     tft.drawString("aparato", 50, 110, 4);
     delay(2000);
@@ -55,40 +53,46 @@ void loop()
     tft.fillScreen(TFT_BLACK);
     Serial.println("Buen funcionamiento verificado");
     tft.drawString("Fecha", 10, 10, 2);
-    tft.drawString("Bateria", 200, 10, 2);
+    tft.drawString("Bateria", 220, 10, 2);
     tft.drawString("Buen", 80, 80, 3);
     tft.drawString("funcionamiento", 5, 110, 3);
     tft.drawString("verificado", 50, 140, 3);
     delay(2000);
     tft.fillScreen(TFT_BLACK);
-    Serial.println("Listoh");
+    Serial.println("Listo");
     tft.drawString("Fecha", 10, 10, 2);
-    tft.drawString("Bateria", 200, 10, 2);
+    tft.drawString("Bateria", 220, 10, 2);
     tft.drawString("Listo", 75, 80, 4);
+    tft.drawString("menu", 10, 210, 2);
+    tft.drawString("medicion", 220, 210, 2);
     delay(500);
     a = 4;
     break;
   case 4:
-    if (b1 == HIGH)
+    if (digitalRead(b1) == HIGH)
     {
       tft.fillScreen(TFT_BLACK);
       Serial.println("Control de cero");
       tft.drawString("Fecha", 10, 10, 2);
-      tft.drawString("Bateria", 200, 10, 2);
+      tft.drawString("Bateria", 220, 10, 2);
       tft.drawString("Control de", 35, 80, 4);
       tft.drawString("cero", 80, 110, 4);
       delay(2000);
       a = 5;
     }
-    if (b2 == HIGH)
+    if (digitalRead(b2) == HIGH)
     {
       tft.fillScreen(TFT_BLACK);
+      tft.drawString("Fecha", 10, 10, 2);
+      tft.drawString("Bateria", 220, 10, 2);
       tft.setTextColor(TFT_BLACK, TFT_WHITE);
       Serial.println("Apagar");
       tft.drawString("Apagar", 40, 50, 4);
       tft.setTextColor(TFT_WHITE);
       Serial.println("Historial");
-      tft.drawString("Historial", 85, 50, 4);
+      tft.drawString("Historial", 40, 80, 4);
+      tft.drawString("atras", 10, 210, 2);
+      tft.drawString("aceptar", 220, 210, 2);
       delay(500);
       a = 14;
     }
@@ -98,7 +102,7 @@ void loop()
     Serial.println("Cero =");
     Serial.println("0.00 g/L");
     tft.drawString("Fecha", 10, 10, 2);
-    tft.drawString("Bateria", 200, 10, 2);
+    tft.drawString("Bateria", 220, 10, 2);
     tft.drawString("Cero =", 60, 80, 4);
     tft.drawString("0.00 g/L", 60, 110, 4);
     delay(2000);
@@ -118,7 +122,7 @@ void loop()
     Serial.println("Medición g/L");
     Serial.println("Nº de registro");
     tft.drawString("Fecha", 10, 10, 2);
-    tft.drawString("Bateria", 200, 10, 2);
+    tft.drawString("Bateria", 220, 10, 2);
     tft.drawString("Medicion g/L", 20, 80, 4);
     tft.drawString("N de registro", 40, 50, 4);
     delay(2000);
@@ -128,7 +132,7 @@ void loop()
     tft.fillScreen(TFT_BLACK);
     Serial.println("Imprimiendo");
     tft.drawString("Fecha", 10, 10, 2);
-    tft.drawString("Bateria", 200, 10, 2);
+    tft.drawString("Bateria", 220, 10, 2);
     tft.drawString("Imprimiendo", 40, 50, 4);
     delay(2000);
     a = 9;
@@ -137,8 +141,10 @@ void loop()
     tft.fillScreen(TFT_BLACK);
     Serial.println("Listoh");
     tft.drawString("Fecha", 10, 10, 2);
-    tft.drawString("Bateria", 200, 10, 2);
+    tft.drawString("Bateria", 220, 10, 2);
     tft.drawString("Listo", 75, 80, 4);
+    tft.drawString("menu", 10, 210, 2);
+    tft.drawString("medicion", 220, 210, 2);
     delay(500);
     a = 4;
     break;
@@ -148,27 +154,10 @@ void loop()
     tft.drawString("Error de funcionamiento", 40, 50, 4);
     break;
   case 11:
-    if (b1 == HIGH)
-    {
-      tft.fillScreen(TFT_BLACK);
-      Serial.println("Medicion");
-      tft.drawString("Medicion", 40, 50, 4);
-      delay(500);
-      a = 12;
-    }
-    if (b2 == HIGH)
-    {
-      tft.fillScreen(TFT_BLACK);
-      Serial.println("Listoh");
-      tft.drawString("Fecha", 10, 10, 2);
-      tft.drawString("Bateria", 200, 10, 2);
-      tft.drawString("Listo", 75, 80, 4);
-      delay(500);
-      a = 4;
-    }
+    
     break;
   case 12:
-    if (b1 == HIGH)
+    if (digitalRead(b1) == HIGH)
     {
       tft.fillScreen(TFT_BLACK);
       Serial.println("Imprimiendo");
@@ -176,79 +165,114 @@ void loop()
       delay(2000);
       a = 13;
     }
-    if (b2 == HIGH)
+    if (digitalRead(b2) == HIGH)
     {
       tft.fillScreen(TFT_BLACK);
+      tft.drawString("Fecha", 10, 10, 2);
+      tft.drawString("Bateria", 220, 10, 2);
       tft.setTextColor(TFT_BLACK, TFT_WHITE);
       Serial.println("Apagar");
       tft.drawString("Apagar", 40, 50, 4);
       tft.setTextColor(TFT_WHITE);
       Serial.println("Historial");
-      tft.drawString("Historial", 85, 50, 4);
+      tft.drawString("Historial", 40, 80, 4);
+      tft.drawString("atras", 10, 210, 2);
+      tft.drawString("aceptar", 220, 210, 2);
       delay(500);
-      a = 11;
+      a = 14;
     }
     break;
   case 13:
+    tft.fillScreen(TFT_BLACK);
     tft.drawString("Listo", 75, 80, 4);
+    delay(1500);
+    tft.fillScreen(TFT_BLACK);
+    tft.drawString("Fecha", 10, 10, 2);
+    tft.drawString("Bateria", 220, 10, 2);
+    tft.setTextColor(TFT_BLACK, TFT_WHITE);
+    Serial.println("Apagar");
+    tft.drawString("Apagar", 40, 50, 4);
+    tft.setTextColor(TFT_WHITE);
+    Serial.println("Historial");
+    tft.drawString("Historial", 40, 80, 4);
+    tft.drawString("atras", 10, 210, 2);
+    tft.drawString("aceptar", 220, 210, 2);
     delay(500);
-    a = 11;
+    a = 14;
     break;
   case 14:
-    if (b1 == HIGH)
+    if (digitalRead(b1) == HIGH)
     {
       tft.fillScreen(TFT_BLACK);
     }
-    if (b2 ==HIGH)
+    if (digitalRead(b2) == HIGH)
     {
       tft.fillScreen(TFT_BLACK);
       Serial.println("Listoh");
       tft.drawString("Fecha", 10, 10, 2);
-      tft.drawString("Bateria", 200, 10, 2);
+      tft.drawString("Bateria", 220, 10, 2);
       tft.drawString("Listo", 75, 80, 4);
+    tft.drawString("menu", 10, 210, 2);
+    tft.drawString("medicion", 220, 210, 2);
       delay(500);
       a = 4;
     }
-    if (ABAJO == HIGH)
+    if (digitalRead(ABAJO) == HIGH)
     {
       tft.fillScreen(TFT_BLACK);
+      tft.drawString("Fecha", 10, 10, 2);
+      tft.drawString("Bateria", 220, 10, 2);
       tft.setTextColor(TFT_WHITE);
       Serial.println("Apagar");
       tft.drawString("Apagar", 40, 50, 4);
       tft.setTextColor(TFT_BLACK, TFT_WHITE);
       Serial.println("Historial");
-      tft.drawString("Historial", 85, 50, 4);
+      tft.drawString("Historial", 40, 80, 4);
+      tft.setTextColor(TFT_WHITE);
+      tft.drawString("atras", 10, 210, 2);
+      tft.drawString("aceptar", 220, 210, 2);
       delay(500);
       a = 15;
     }
     break;
   case 15:
-  if(b1==HIGH){
-    tft.fillScreen(TFT_BLACK);
-      Serial.println("Medicion");
-      tft.drawString("Medicion", 40, 50, 4);
-      delay(500);
-    a = 12;
-  }
-    if (b2 == HIGH)
+    if (digitalRead(b1) == HIGH)
     {
       tft.fillScreen(TFT_BLACK);
+      Serial.println("Medicion");
+      tft.drawString("Registro N:", 40, 40, 4);
+      tft.drawString("Medicion", 40, 70, 4);
+      tft.drawString("atras", 10, 210, 2);
+      tft.drawString("imprimir", 220, 210, 2);
+      delay(500);
+      a = 12;
+    }
+    if (digitalRead(b2) == HIGH)
+    {
+      tft.fillScreen(TFT_BLACK);
+      tft.setTextColor(TFT_WHITE);
       Serial.println("Listoh");
       tft.drawString("Fecha", 10, 10, 2);
-      tft.drawString("Bateria", 200, 10, 2);
+      tft.drawString("Bateria", 220, 10, 2);
       tft.drawString("Listo", 75, 80, 4);
+    tft.drawString("menu", 10, 210, 2);
+    tft.drawString("medicion", 220, 210, 2);
       delay(500);
       a = 4;
     }
-    if (ARRIBA == HIGH)
+    if (digitalRead(ARRIBA) == HIGH)
     {
       tft.fillScreen(TFT_BLACK);
+      tft.drawString("Fecha", 10, 10, 2);
+      tft.drawString("Bateria", 220, 10, 2);
       tft.setTextColor(TFT_BLACK, TFT_WHITE);
       Serial.println("Apagar");
       tft.drawString("Apagar", 40, 50, 4);
       tft.setTextColor(TFT_WHITE);
       Serial.println("Historial");
-      tft.drawString("Historial", 85, 50, 4);
+      tft.drawString("Historial", 40, 80, 4);
+      tft.drawString("atras", 10, 210, 2);
+      tft.drawString("aceptar", 220, 210, 2);
       delay(500);
       a = 14;
     }
